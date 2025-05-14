@@ -20,6 +20,24 @@ export default function App() {
         const response = await fetch('https://swapi.tech/api/starships/', options)
         const data = await response.json()
 
+        // Fetch detailed information for each starship
+        const detailedStarships = await Promise.all(
+          data.results.map(async (ship) => {
+            const detailResponse = await fetch(ship.url, options)
+            const detailData = await detailResponse.json()
+            return detailData.result.properties
+          }),
+        )
+
+        setStarships(detailedStarships)
+      } catch (error) {
+        console.error('Error fetching starships:', error)
+      }
+    }
+
+    fetchStarshipDetails()
+  }, [])
+
   return (
     <main>
       <h1 className="text-3xl text-red-500">Hello, World!</h1>
