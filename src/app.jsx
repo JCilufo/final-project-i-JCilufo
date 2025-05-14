@@ -1,3 +1,6 @@
+import Header from './components/header'
+import StarshipGrid from './components/starship-grid/index'
+import { useState, useEffect } from 'react'
 export default function App() {
   return (
     <main>
