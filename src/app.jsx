@@ -12,6 +12,14 @@ const options = {
 }
 
 export default function App() {
+  const [starships, setStarships] = useState([])
+
+  useEffect(() => {
+    const fetchStarshipDetails = async () => {
+      try {
+        const response = await fetch('https://swapi.tech/api/starships/', options)
+        const data = await response.json()
+
   return (
     <main>
       <h1 className="text-3xl text-red-500">Hello, World!</h1>
